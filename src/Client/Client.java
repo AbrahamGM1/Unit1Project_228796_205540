@@ -24,37 +24,40 @@ public class Client {
      */
     public static void main(String[] args) {
         
-        final int SERVERPORT = 1000;
-        byte[] buffer = new byte[1024];
+        GUI gui=new GUI();
+        gui.setVisible(true);
         
-        
- 
-        
-        try {
-            
-            InetAddress serverDirection = InetAddress.getByName("localhost");
-            DatagramSocket udpSocket = new DatagramSocket();
-            String message = "Hello from the client!";
-            buffer = message.getBytes();
-            DatagramPacket question = new DatagramPacket(buffer,buffer.length,serverDirection,SERVERPORT);
-            udpSocket.send(question);
-            
-            DatagramPacket request = new DatagramPacket(buffer, buffer.length);
-            udpSocket.receive(request);
-            
-            message = new String(request.getData());
-            System.out.println(message);
-            
-            udpSocket.close();
-            
-            
-        } catch (SocketException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        final int SERVERPORT = 1000;
+//        byte[] buffer = new byte[1024];
+//        
+//        
+// 
+//        
+//        try {
+//            
+//            InetAddress serverDirection = InetAddress.getByName("localhost");
+//            DatagramSocket udpSocket = new DatagramSocket();
+//            String message = "Hello from the client!";
+//            buffer = message.getBytes();
+//            DatagramPacket question = new DatagramPacket(buffer,buffer.length,serverDirection,SERVERPORT);
+//            udpSocket.send(question);
+//            
+//            DatagramPacket request = new DatagramPacket(buffer, buffer.length);
+//            udpSocket.receive(request);
+//            
+//            message = new String(request.getData());
+//            System.out.println(message);
+//            
+//            udpSocket.close();
+//            
+//            
+//        } catch (SocketException ex) {
+//            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         
     }
     
