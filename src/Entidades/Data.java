@@ -6,68 +6,118 @@ package Entidades;
 
 /**
  *
- * @author Hugo Rivera
+ * @author Hugo Rivera, Abraham Gómez
  */
 public class Data {
-    float altura;
-    float peso;
+    
+    //The variables needed to get the BMI
+    float height;
+    float weight;
     float bmi;
-    String resultado;
+    String result;
 
+    /**
+     * Empty constructor
+     */
     public Data() {
     }
 
-    public Data(float altura, float peso) {
-        this.altura = altura;
-        this.peso = peso;
+    /**
+     * Constructor that recieves the height and the weight entered as a parameters
+     * @param height - the height from the user
+     * @param weight - the weight from the user
+     */
+    public Data(float height, float weight) {
+        this.height = height;
+        this.weight = weight;
     }
-
-    public Data(float altura, float peso, float bmi, String resultado) {
-        this.altura = altura;
-        this.peso = peso;
+    
+    /**
+     * Constructor that receive all the variable information needed
+     * @param height - the height from the user
+     * @param weight - the weight from the user
+     * @param bmi - the bmi calculated
+     * @param result - the final result from the bmi
+     */
+    public Data(float height, float weight, float bmi, String result) {
+        this.height = height;
+        this.weight = weight;
         this.bmi = bmi;
-        this.resultado = resultado;
+        this.result = result;
     }
 
     
-
-    public float getAltura() {
-        return altura;
+    /**
+     * Returns the height stored in the object
+     * @return - the height
+     */
+    public float getHeight() {
+        return height;
     }
 
-    public void setAltura(float altura) {
-        this.altura = altura;
+    /**
+     * Assigns a height to the object
+     * @param height - the height to assign
+     */
+    public void setHeight(float height) {
+        this.height = height;
     }
 
-    public float getPeso() {
-        return peso;
+    /**
+     * Returns the weight stored in the object
+     * @return - the weight
+     */
+    public float getWeight() {
+        return weight;
     }
 
-    public void setPeso(float peso) {
-        this.peso = peso;
+    /**
+     * Assigns a weight to the object
+     * @param weight - the weight to assign
+     */
+    public void setWeight(float weight) {
+        this.weight = weight;
     }
 
+    /**
+     * Returns the BMI stored in the object
+     * @return - the bmi
+     */
     public float getBmi() {
         return bmi;
     }
 
+    /**
+     * Assigns a bmi to the object
+     * @param bmi - the bmi to assign
+     */
     public void setBmi(float bmi) {
         this.bmi = bmi;
     }
 
-    
-
-    public String getResultado() {
-        return resultado;
+    /**
+     * Returns the result stored in the object
+     * @return - the result
+     */
+    public String getResult() {
+        return result;
     }
 
-    public void setResultado(String resultado) {
-        this.resultado = resultado;
+    /**
+     * Assigns a result to the object
+     * @param result - the result to assign
+     */
+    public void setResult(String result) {
+        this.result = result;
     }
 
+    /**
+     * Method toString from the object
+     * @return - the string with the elements of the object
+     */
     @Override
     public String toString() {
-        return altura + "," + peso + "," + bmi + "," + resultado;
+        return height + "," + weight + "," + bmi + "," + result;
     }
     
 }

@@ -24,22 +24,27 @@ import org.apache.commons.io.FileUtils;
 
 /**
  *
- * @author spide
+ * @author Hugo Rivera, Abraham Gómez
  */
 public class Server {
 
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        
+        //Initialized variables
         final int PORT = 1000;
         byte[] buffer = new byte[4096];
         DatagramSocket udpSocket;
         Middle mid;
-        
+       
            try {
+            
             System.out.println("Start");
+            //Create a new UDP socket
             udpSocket = new DatagramSocket(PORT);
             String filePath="bmi_server.csv";
             mid=new Middle(udpSocket,filePath);
@@ -47,21 +52,27 @@ public class Server {
             
             while(true){
             System.out.println("Waiting information ....");
-            udpSocket.receive(request);
-            FileUtils.writeByteArrayToFile(new File(filePath), request.getData());
-            File file =new File(filePath);
-            String s= FileUtils.readFileToString(file);
-            String []sArray= s.split(",");
-                
-            Float altura =Float.parseFloat(sArray[0]);
-            Float peso =Float.parseFloat(sArray[1]);
-            Float bmi = peso/(altura*altura); 
-            String resultado="";
-                
-            Data archivo=new Data(altura,peso,bmi,resultado);
             
-            mid.sendToClient(archivo,request);
-            System.out.println(archivo.toString());
+            //The socket receive the request
+            udpSocket.receive(request);
+            //Writes a byte array to a file creating the file if it does not exist.
+            FileUtils.writeByteArrayToFile(new File(filePath), request.getData());
+            //A new file is created with the given path
+            File file =new File(filePath);
+            //We create a new string using the file created as a base
+            String s= FileUtils.readFileToString(file);
+            //Array of strings made up of each of the elements of the file that are separated by the comma
+            String []sArray= s.split(",");
+            //Based on the order of the array elements, we store each of these in variables
+            Float height =Float.parseFloat(sArray[0]);
+            Float weight =Float.parseFloat(sArray[1]);
+            Float bmi = weight/(height*height); 
+            String result="";               
+            //We make a new object with all the elements extracted from the file and then send it to the middleware
+            //so that it can be sent to the client
+            Data objectFile=new Data(height,weight,bmi,result);
+            mid.sendToClient(objectFile,request);
+            System.out.println(objectFile.toString());
             }
         } catch (SocketException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
