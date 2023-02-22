@@ -17,17 +17,19 @@ public class Archivo {
     public Archivo() {
     }
 
-    public Archivo(int altura, int peso) {
+    public Archivo(float altura, float peso) {
         this.altura = altura;
         this.peso = peso;
     }
 
-    public Archivo(int altura, int peso, int bmi, String resultado) {
+    public Archivo(float altura, float peso, float bmi, String resultado) {
         this.altura = altura;
         this.peso = peso;
         this.bmi = bmi;
         this.resultado = resultado;
     }
+
+    
 
     public float getAltura() {
         return altura;

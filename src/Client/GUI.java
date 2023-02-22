@@ -5,6 +5,11 @@
 package Client;
 
 import Entidades.Archivo;
+import Middleware.Middle;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,11 +22,18 @@ public class GUI extends javax.swing.JFrame {
      */
     Negocio negocioCliente;
     Archivo archivo;
+    DatagramSocket udpSocket;
+    String filePath="bmi_client.csv";
     public GUI() {
-        negocioCliente=new Negocio();
-        archivo=new Archivo();
-        initComponents();
-        init();
+        try {
+            negocioCliente=new Negocio();
+            archivo=new Archivo();
+            udpSocket=new DatagramSocket(999);
+            initComponents();
+            init();
+        } catch (SocketException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -162,7 +174,10 @@ public class GUI extends javax.swing.JFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         archivo.setAltura(Float.parseFloat(txtAltura.getText()));
         archivo.setPeso(Float.parseFloat(txtPeso.getText()));
-        negocioCliente.send(archivo);
+        Middle mid= new Middle(udpSocket,filePath);
+        mid.send(archivo);
+        archivo=mid.recive();
+        System.out.println(archivo.toString());
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtBMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBMIActionPerformed
