@@ -8,21 +8,21 @@ package Entidades;
  *
  * @author Hugo Rivera
  */
-public class Archivo {
+public class Data {
     float altura;
     float peso;
     float bmi;
     String resultado;
 
-    public Archivo() {
+    public Data() {
     }
 
-    public Archivo(float altura, float peso) {
+    public Data(float altura, float peso) {
         this.altura = altura;
         this.peso = peso;
     }
 
-    public Archivo(float altura, float peso, float bmi, String resultado) {
+    public Data(float altura, float peso, float bmi, String resultado) {
         this.altura = altura;
         this.peso = peso;
         this.bmi = bmi;
