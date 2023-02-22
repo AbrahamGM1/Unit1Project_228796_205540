@@ -28,7 +28,7 @@ public class GUI extends javax.swing.JFrame {
         try {
             negocioCliente=new Negocio();
             archivo=new Archivo();
-            udpSocket=new DatagramSocket(999);
+            udpSocket=new DatagramSocket();
             initComponents();
             init();
         } catch (SocketException ex) {

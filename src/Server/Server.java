@@ -36,7 +36,9 @@ public class Server {
         byte[] buffer = new byte[1024];
         DatagramSocket udpSocket;
         Middle mid;
+        
         try {
+            System.out.println("Ready to recive");
             udpSocket = new DatagramSocket(PORT);
             String filePath="bmi_server.csv";
             mid=new Middle(udpSocket,filePath);

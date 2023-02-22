@@ -40,7 +40,7 @@ public class Middle {
             
             byte[] bytes = Files.readAllBytes(file.toPath());         
             buffer = bytes;
-            DatagramPacket question = new DatagramPacket(buffer,buffer.length,serverDirection,udpSocket.getPort());
+            DatagramPacket question = new DatagramPacket(buffer,buffer.length,serverDirection,1000);
             udpSocket.send(question);
             
             
@@ -51,6 +51,7 @@ public class Middle {
     
     public Archivo recive(){
             try {
+                System.out.println("Ready to recive");
                 DatagramPacket request = new DatagramPacket(buffer, buffer.length);
                 udpSocket.receive(request);
                 FileUtils.writeByteArrayToFile(new File(filePath), request.getData());
