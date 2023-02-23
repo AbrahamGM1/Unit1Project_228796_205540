@@ -37,7 +37,7 @@ public class Data {
      * @param height - the height from the user
      * @param weight - the weight from the user
      * @param bmi - the bmi calculated
-     * @param result - the final result from the bmi
+     * 
      */
     public Data(float height, float weight, float bmi, String result) {
         this.height = height;

@@ -29,7 +29,6 @@ public class Client extends javax.swing.JFrame {
     String filePath="bmi_client.csv";
     public Client() {
         try {
-            
             fileObject=new Data();
             udpSocket=new DatagramSocket();
             initComponents();
@@ -153,7 +152,7 @@ public class Client extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Components are initialized
+     * Components are initialized with default values
      */
     private void init(){
         txtHeight.setText("");
@@ -183,6 +182,7 @@ public class Client extends javax.swing.JFrame {
         mid.sendToServer(fileObject);
         fileObject=receive();
         
+        //Updates de interface with the data recived
         txtHeight.setText(String.valueOf(fileObject.getHeight()));
         txtWeight.setText(String.valueOf(fileObject.getWeight()));
         txtResult.setText(determineBMIResult(fileObject.getBmi()));
@@ -203,7 +203,7 @@ public class Client extends javax.swing.JFrame {
      */
     private Data receive(){
         try {
-                System.out.println("Ready to recive");
+                System.out.println("Waiting information ...");
                 InetAddress serverDirection = InetAddress.getByName("localhost");
                 byte[] buffer = new byte[4096];
                 DatagramPacket request = new DatagramPacket(buffer,buffer.length,serverDirection,1000);
@@ -214,12 +214,12 @@ public class Client extends javax.swing.JFrame {
                 String s= FileUtils.readFileToString(file);
                 sArray= s.split(",");
                 
-                Float altura =Float.parseFloat(sArray[0]);
-                Float peso =Float.parseFloat(sArray[1]);
+                Float heigth =Float.parseFloat(sArray[0]);
+                Float weigth =Float.parseFloat(sArray[1]);
                 Float bmi =Float.parseFloat(sArray[2]);
-                String resultado=sArray[3];
+                String result=sArray[3];
                 
-                Data data=new Data(altura,peso,bmi,resultado);
+                Data data=new Data(heigth,weigth,bmi,result);
                 
                 return data;
                 
